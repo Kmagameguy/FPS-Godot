@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://controllers/scripts/fps_controller.gd" id="1_pgc1p"]
 [ext_resource type="Material" uid="uid://b4gwd5h7ixvct" path="res://materials/player.tres" id="2_gldw4"]
-[ext_resource type="Script" path="res://controllers/scripts/reticle.gd" id="3_vavsv"]
+[ext_resource type="Script" path="res://scripts/reticle.gd" id="3_374qb"]
 [ext_resource type="Theme" uid="uid://moi7ydugsbww" path="res://ui/debug.tres" id="4_pkiou"]
-[ext_resource type="Script" path="res://controllers/debug.gd" id="5_41gfp"]
+[ext_resource type="Script" path="res://scripts/debug.gd" id="5_mo00i"]
 
 [sub_resource type="Animation" id="Animation_xge4b"]
 length = 0.001
@@ -154,7 +154,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("3_vavsv")
+script = ExtResource("3_374qb")
 RETICLE_LINES = [NodePath("Left"), NodePath("Top"), NodePath("Right"), NodePath("Bottom")]
 PLAYER_CONTROLLER = NodePath("../..")
 
@@ -182,7 +182,7 @@ offset_top = 10.0
 offset_right = 210.0
 offset_bottom = 50.0
 theme = ExtResource("4_pkiou")
-script = ExtResource("5_41gfp")
+script = ExtResource("5_mo00i")
 
 [node name="MarginContainer" type="MarginContainer" parent="Interface/DebugPanel"]
 layout_mode = 2
