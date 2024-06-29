@@ -7,7 +7,7 @@ Project files based on the excellent "FPS Godot Engine Project" series of videos
 
 # Installation
 
-Version: Godot Engine 4.1
+Version: Godot Engine 4.2
 
 - `git clone git@github.com/Kmagameguy/FPS-Godot.git`
 - Import project into the Godot Engine
