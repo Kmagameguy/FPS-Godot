@@ -18,3 +18,6 @@ func update(delta: float):
 
 	if PLAYER.velocity.length() > 0.0 && PLAYER.is_on_floor():
 		transition.emit(PLAYER.STATES.WALK.STATE_NAME)
+
+	if Input.is_action_just_pressed(PLAYER.STATES.JUMP.ACTION) && PLAYER.is_on_floor():
+		transition.emit(PLAYER.STATES.JUMP.STATE_NAME)
