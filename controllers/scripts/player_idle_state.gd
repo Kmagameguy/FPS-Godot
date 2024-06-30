@@ -4,7 +4,7 @@ class_name PlayerIdleState extends PlayerMovementState
 @export var ACCELERATION   : float = 0.1
 @export var DECELERATION   : float = 0.25
 
-func enter() -> void:
+func enter(_previous_state: PlayerState) -> void:
 	ANIMATION.pause()
 
 func update(delta: float):

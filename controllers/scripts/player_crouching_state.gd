@@ -7,8 +7,20 @@ class_name PlayerCrouchingState extends PlayerMovementState
 
 @onready var CROUCH_SHAPECAST: ShapeCast3D = %CrouchCollisionCast
 
-func enter() -> void:
+var RELEASED : bool = false
+
+func enter(previous_state: PlayerState) -> void:
+	var UPDATE_TRACK = true
+	
 	ANIMATION.play(PLAYER.STATES.CROUCH.ACTION, -1.0, CROUCH_SPEED)
+	if previous_state.name != PLAYER.STATES.SLIDE.STATE_NAME:
+		ANIMATION.play(PLAYER.STATES.CROUCH.ANIMATION, -1.0, CROUCH_SPEED)
+	elif previous_state.name == PLAYER.STATES.SLIDE.STATE_NAME:
+		ANIMATION.current_animation = PLAYER.STATES.CROUCH.ANIMATION
+		ANIMATION.seek(1.0, UPDATE_TRACK)
+
+func exit() -> void:
+	RELEASED = false
 
 func update(delta):
 	PLAYER.update_gravity(delta)
@@ -16,6 +28,9 @@ func update(delta):
 	PLAYER.update_velocity()
 	
 	if Input.is_action_just_released(PLAYER.STATES.CROUCH.ACTION):
+		uncrouch()
+	elif !Input.is_action_pressed(PLAYER.STATES.CROUCH.ACTION) && !RELEASED:
+		RELEASED = true
 		uncrouch()
 		
 func uncrouch():

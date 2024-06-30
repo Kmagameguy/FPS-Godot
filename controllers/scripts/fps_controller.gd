@@ -12,6 +12,7 @@ const STATES = {
 	CROUCH = { STATE_NAME = "PlayerCrouchingState", ANIMATION = "crouch", ACTION = "crouch" },
 	WALK   = { STATE_NAME = "PlayerWalkingState", ANIMATION = "Walking", ACTION = null },
 	SPRINT = { STATE_NAME = "PlayerSprintingState", ANIMATION = "Sprinting", ACTION = "sprint" },
+	SLIDE  = { STATE_NAME = "PlayerSlidingState", ANIMATION = "Sliding", ACTION = "slide" },
 	JUMP   = { STATE_NAME = "PlayerJumpingState", ANIMATION = null, ACTION = "jump" }
 }
 
@@ -26,6 +27,7 @@ var _move_left_action    : String = "move_left"
 var _move_forward_action : String = "move_forward"
 var _move_right_action   : String = "move_right"
 var _move_backward_action: String = "move_backward"
+var _current_rotation    : float
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -43,6 +45,7 @@ func _input(event: InputEvent) -> void:
 
 func _update_camera(delta: float) -> void:
 	# Rotates camera using euler rotation
+	_current_rotation = _rotation_input
 	_mouse_rotation.x += _tilt_input * delta
 	_mouse_rotation.x = clamp(_mouse_rotation.x, TILT_LOWER_LIMIT, TILT_UPPER_LIMIT)
 	_mouse_rotation.y += _rotation_input * delta

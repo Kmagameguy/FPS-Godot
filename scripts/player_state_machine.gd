@@ -16,7 +16,7 @@ func _ready() -> void:
 			push_warning("State machine contains incompatible child node")
 
 	await owner.ready
-	CURRENT_STATE.enter()
+	CURRENT_STATE.enter(CURRENT_STATE)
 
 # Some inheritance stuff; each state inherits from PlayerState which provides a base
 # set of functions, like "update" and "physics_upate".  We can call those on any PlayerState object.
@@ -36,7 +36,7 @@ func _on_child_transition(new_state_name: StringName) -> void:
 	if new_state != null:
 		if new_state != CURRENT_STATE:
 			CURRENT_STATE.exit()
-			new_state.enter()
+			new_state.enter(CURRENT_STATE)
 			CURRENT_STATE = new_state
 		else:
 			push_warning("State does not exist")

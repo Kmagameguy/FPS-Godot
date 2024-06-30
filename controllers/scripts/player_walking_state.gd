@@ -5,7 +5,7 @@ class_name PlayerWalkingState extends PlayerMovementState
 @export var DECELERATION   : float = 0.25
 @export var MAX_ANIM_SPEED : float = 2.2
 
-func enter() -> void:
+func enter(_previous_state: PlayerState) -> void:
 	ANIMATION.play(PLAYER.STATES.WALK.ANIMATION, -1.0, 1.0)
 
 func exit() -> void:
