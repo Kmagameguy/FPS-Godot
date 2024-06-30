@@ -1,0 +1,31 @@
+class_name PlayerCrouchingState extends PlayerMovementState
+
+@export var SPEED       : float = 3.0
+@export var ACCELERATION: float = 0.1
+@export var DECELERATION: float = 0.25
+@export_range(1, 6, 0.1) var CROUCH_SPEED: float = 4.0
+
+@onready var CROUCH_SHAPECAST: ShapeCast3D = %CrouchCollisionCast
+
+func enter() -> void:
+	ANIMATION.play(PLAYER.STATES.CROUCH.ACTION, -1.0, CROUCH_SPEED)
+
+func update(delta):
+	PLAYER.update_gravity(delta)
+	PLAYER.update_input(SPEED, ACCELERATION, DECELERATION)
+	PLAYER.update_velocity()
+	
+	if Input.is_action_just_released(PLAYER.STATES.CROUCH.ACTION):
+		uncrouch()
+		
+func uncrouch():
+	var PLAY_FROM_END: bool = true
+
+	if !CROUCH_SHAPECAST.is_colliding() && !Input.is_action_pressed(PLAYER.STATES.CROUCH.ACTION):
+		ANIMATION.play(PLAYER.STATES.CROUCH.ANIMATION, -1.0, -CROUCH_SPEED * 1.5, PLAY_FROM_END)
+		if ANIMATION.is_playing():
+			await ANIMATION.animation_finished
+		transition.emit(PLAYER.STATES.IDLE.STATE_NAME)
+	elif CROUCH_SHAPECAST.is_colliding():
+		await get_tree().create_timer(0.1).timeout
+		uncrouch()

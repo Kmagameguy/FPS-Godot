@@ -1,6 +1,4 @@
-class_name PlayerState
-
-extends Node
+class_name PlayerState extends Node
 
 signal transition(new_state_name: StringName)
 
