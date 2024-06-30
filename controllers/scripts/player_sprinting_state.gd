@@ -6,6 +6,9 @@ class_name PlayerSprintingState extends PlayerMovementState
 @export var MAX_ANIM_SPEED: float = 1.6
 
 func enter(_previous_state: PlayerState) -> void:
+	if ANIMATION.is_playing() && ANIMATION.current_animation == PLAYER.STATES.JUMP.ANIMATION.END:
+		await ANIMATION.animation_finished
+
 	ANIMATION.play(PLAYER.STATES.SPRINT.ANIMATION, 0.5, 1.0)
 	
 func update(delta: float) -> void:

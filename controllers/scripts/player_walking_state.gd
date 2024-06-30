@@ -6,6 +6,9 @@ class_name PlayerWalkingState extends PlayerMovementState
 @export var MAX_ANIM_SPEED : float = 2.2
 
 func enter(_previous_state: PlayerState) -> void:
+	if ANIMATION.is_playing() && ANIMATION.current_animation == PLAYER.STATES.JUMP.ANIMATION.END:
+		await ANIMATION.animation_finished
+	
 	ANIMATION.play(PLAYER.STATES.WALK.ANIMATION, -1.0, 1.0)
 
 func exit() -> void:

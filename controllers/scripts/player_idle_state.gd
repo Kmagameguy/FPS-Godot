@@ -5,6 +5,9 @@ class_name PlayerIdleState extends PlayerMovementState
 @export var DECELERATION   : float = 0.25
 
 func enter(_previous_state: PlayerState) -> void:
+	if ANIMATION.is_playing() && ANIMATION.current_animation == PLAYER.STATES.JUMP.ANIMATION.END:
+		await ANIMATION.animation_finished
+	
 	ANIMATION.pause()
 
 func update(delta: float):

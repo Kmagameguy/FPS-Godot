@@ -9,11 +9,11 @@ class_name Player extends CharacterBody3D
 
 const STATES = {
 	IDLE   = { STATE_NAME = "PlayerIdleState", ANIMATION = null, ACTION = null },
-	CROUCH = { STATE_NAME = "PlayerCrouchingState", ANIMATION = "crouch", ACTION = "crouch" },
+	CROUCH = { STATE_NAME = "PlayerCrouchingState", ANIMATION = "Crouching", ACTION = "crouch" },
 	WALK   = { STATE_NAME = "PlayerWalkingState", ANIMATION = "Walking", ACTION = null },
 	SPRINT = { STATE_NAME = "PlayerSprintingState", ANIMATION = "Sprinting", ACTION = "sprint" },
 	SLIDE  = { STATE_NAME = "PlayerSlidingState", ANIMATION = "Sliding", ACTION = "slide" },
-	JUMP   = { STATE_NAME = "PlayerJumpingState", ANIMATION = null, ACTION = "jump" }
+	JUMP   = { STATE_NAME = "PlayerJumpingState", ANIMATION = { START = "JumpStart", END = "JumpEnd" }, ACTION = "jump" }
 }
 
 var _mouse_input         : bool = false
