@@ -1,6 +1,4 @@
-class_name PlayerIdleState
-
-extends PlayerState
+class_name PlayerIdleState extends PlayerState
 
 @export var ANIMATION : AnimationPlayer
 
