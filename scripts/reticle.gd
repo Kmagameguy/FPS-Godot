@@ -16,7 +16,7 @@ var _reticle_bottom : int = 3
 func _ready() -> void:
 	queue_redraw()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_adjust_reticle_lines()
 
 func _draw() -> void:

@@ -3,6 +3,8 @@ extends CharacterBody3D
 @export_range(5, 10, 0.1) var CROUCH_SPEED : float = 7.0
 @export var SPEED_DEFAULT     : float = 5.0
 @export var SPEED_CROUCH      : float = 2.0
+@export var ACCELERATION      : float = 0.1
+@export var DECELERATION      : float = 0.25
 @export var TOGGLE_CROUCH     : bool  = true
 @export var SPEED             : float = 5.0
 @export var JUMP_VELOCITY     : float = 4.0
@@ -79,7 +81,7 @@ func _update_camera(delta: float) -> void:
 	_tilt_input = 0.0
 
 func _ready() -> void:
-
+	Global.player = self
 	# Get mouse input
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	# Make sure none of the elements of the Player trigger the is_colliding()
@@ -111,11 +113,14 @@ func _physics_process(delta: float) -> void:
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	if direction:
-		velocity.x = direction.x * _speed
-		velocity.z = direction.z * _speed
+		velocity.x = lerp(velocity.x, direction.x * _speed, ACCELERATION)
+		velocity.z = lerp(velocity.z, direction.z * _speed, ACCELERATION)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		# fix for weird left/right shift that can happen when coming to a stop.
+		var vel = Vector3(velocity.x, velocity.y, velocity.z)
+		var temp = move_toward(Vector3(velocity.x, velocity.y, velocity.z).length(), 0, DECELERATION)
+		velocity.x = vel.normalized().x * temp
+		velocity.z = vel.normalized().z * temp
 
 	move_and_slide()
 
