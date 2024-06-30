@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	CURRENT_STATE.physics_update(delta)
 
-# Handles state changes.  The new_state_name should match one of the defined states.
+# Handles state changes. The new_state_name should match one of the defined states.
 # From there we exit the current state and enter the new one if it is different.
 # Again this is taking advantage of inheritance since any state will contain the "exit" and
 # "enter" methods by virtue of inheriting from the base PlayerState class.
@@ -39,4 +39,4 @@ func _on_child_transition(new_state_name: StringName) -> void:
 			new_state.enter(CURRENT_STATE)
 			CURRENT_STATE = new_state
 		else:
-			push_warning("State does not exist")
+			push_warning("State does not exist: " + new_state_name)

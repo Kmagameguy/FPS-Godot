@@ -12,7 +12,7 @@ var RELEASED : bool = false
 func enter(previous_state: PlayerState) -> void:
 	var UPDATE_TRACK = true
 	
-	ANIMATION.play(PLAYER.STATES.CROUCH.ACTION, -1.0, CROUCH_SPEED)
+	ANIMATION.play(PLAYER.STATES.CROUCH.ANIMATION, -1.0, CROUCH_SPEED)
 	if previous_state.name != PLAYER.STATES.SLIDE.STATE_NAME:
 		ANIMATION.play(PLAYER.STATES.CROUCH.ANIMATION, -1.0, CROUCH_SPEED)
 	elif previous_state.name == PLAYER.STATES.SLIDE.STATE_NAME:
