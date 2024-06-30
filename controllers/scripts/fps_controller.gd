@@ -13,7 +13,8 @@ const STATES = {
 	WALK   = { STATE_NAME = "PlayerWalkingState", ANIMATION = "Walking", ACTION = null },
 	SPRINT = { STATE_NAME = "PlayerSprintingState", ANIMATION = "Sprinting", ACTION = "sprint" },
 	SLIDE  = { STATE_NAME = "PlayerSlidingState", ANIMATION = "Sliding", ACTION = "slide" },
-	JUMP   = { STATE_NAME = "PlayerJumpingState", ANIMATION = { START = "JumpStart", END = "JumpEnd" }, ACTION = "jump" }
+	JUMP   = { STATE_NAME = "PlayerJumpingState", ANIMATION = { START = "JumpStart", END = "JumpEnd" }, ACTION = "jump" },
+	FALL   = { STATE_NAME = "PlayerFallingState", ANIMATION = null, ACTION = null }
 }
 
 var _mouse_input         : bool = false
@@ -95,3 +96,6 @@ func update_input(speed: float, acceleration: float, deceleration: float) -> voi
 
 func update_velocity() -> void:
 	move_and_slide()
+
+func is_in_air() -> bool:
+	return !is_on_floor()

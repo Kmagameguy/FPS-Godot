@@ -32,3 +32,6 @@ func update(delta: float) -> void:
 	if PLAYER.is_on_floor():
 		ANIMATION.play(PLAYER.STATES.JUMP.ANIMATION.END)
 		transition.emit(PLAYER.STATES.IDLE.STATE_NAME)
+	
+	if PLAYER.velocity.y < -3.0 && PLAYER.is_in_air():
+		transition.emit(PLAYER.STATES.FALL.STATE_NAME)

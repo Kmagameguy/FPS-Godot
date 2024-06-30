@@ -32,6 +32,9 @@ func update(delta: float):
 	
 	if Input.is_action_just_pressed(PLAYER.STATES.JUMP.ACTION) && PLAYER.is_on_floor():
 		transition.emit(PLAYER.STATES.JUMP.STATE_NAME)
+	
+	if PLAYER.velocity.y < -3.0 && PLAYER.is_in_air():
+		transition.emit(PLAYER.STATES.FALL.STATE_NAME)
 
 func set_animation_speed(speed: float):
 	var alpha: float = remap(speed, 0.0, SPEED, 0.0, 1.0)
