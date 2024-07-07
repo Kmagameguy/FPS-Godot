@@ -10,7 +10,7 @@ func enter(_previous_state: PlayerState) -> void:
 
 	ANIMATION.pause()
 
-func update(delta: float):
+func update(delta: float) -> void:
 	PLAYER.update_gravity(delta)
 	# This is kinda weird, would be nice if these were optional args or something...
 	PLAYER.update_input(SPEED, ACCELERATION, DECELERATION)

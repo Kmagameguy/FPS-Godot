@@ -17,7 +17,7 @@ func update(delta: float) -> void:
 	PLAYER.update_velocity()
 
 	if Input.is_action_just_pressed(PLAYER.STATES.JUMP.ACTION) && _not_previously_jumping():
-		PLAYER.velocity.y = DOUBLE_JUMP_VELOCITY
+		transition.emit(PLAYER.STATES.JUMP.STATE_NAME)
 
 	if PLAYER.is_on_floor():
 		ANIMATION.play(PLAYER.STATES.JUMP.ANIMATION.END)

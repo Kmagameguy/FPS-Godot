@@ -7,7 +7,7 @@ class_name PlayerJumpingState extends PlayerMovementState
 @export_range(0.5, 1.0, 0.01) var INPUT_REDUCER: float = 0.85
 
 func enter(_previous_state: PlayerState) -> void:
-	PLAYER.velocity.y += JUMP_VELOCITY
+	PLAYER.velocity.y = JUMP_VELOCITY
 	ANIMATION.play(PLAYER.STATES.JUMP.ANIMATION.START)
 
 func update(delta: float) -> void:
