@@ -472,6 +472,8 @@ material = ExtResource("2_gldw4")
 [node name="FPSController" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER", "ANIMATION_PLAYER", "CROUCH_SHAPECAST")]
 script = ExtResource("1_pgc1p")
 MOUSE_SENSITIVITY = 0.25
+TILT_LOWER_LIMIT = null
+TILT_UPPER_LIMIT = null
 CAMERA_CONTROLLER = NodePath("CameraController/PlayerView")
 ANIMATION_PLAYER = NodePath("AnimationPlayer")
 CROUCH_SHAPECAST = NodePath("CrouchCollisionCast")

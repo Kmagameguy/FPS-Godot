@@ -84,6 +84,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	Global.debug.add_property("Velocity", "%.2f" % velocity.length(), 2)
+	Global.debug.add_property("Animation Player", ANIMATION_PLAYER.current_animation, 3)
 	
 	# Update camera movement based on mouse movement
 	_update_camera(delta)
