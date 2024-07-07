@@ -479,7 +479,7 @@ CROUCH_SHAPECAST = NodePath("CrouchCollisionCast")
 libraries = {
 "": SubResource("AnimationLibrary_vm1m6")
 }
-blend_times = [&"Crouching", &"JumpEnd", 0.5, &"Crouching", &"JumpStart", 0.1, &"JumpEnd", &"Walking", 0.5, &"JumpEnd", &"JumpStart", 0.1]
+blend_times = [&"Crouching", &"JumpStart", 0.1, &"Crouching", &"JumpEnd", 0.5, &"JumpEnd", &"JumpStart", 0.1, &"JumpEnd", &"Walking", 0.5]
 
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -575,9 +575,6 @@ CURRENT_STATE = NodePath("PlayerIdleState")
 
 [node name="PlayerIdleState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("6_c40gf")
-SPEED = null
-ACCELERATION = null
-DECELERATION = null
 
 [node name="PlayerWalkingState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("8_l1f7m")

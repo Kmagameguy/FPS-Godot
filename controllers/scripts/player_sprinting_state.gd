@@ -21,7 +21,7 @@ func update(delta: float) -> void:
 	if Input.is_action_just_released(PLAYER.STATES.SPRINT.ACTION):
 		transition.emit(PLAYER.STATES.WALK.STATE_NAME)
 	
-	if Input.is_action_just_pressed("crouch") && PLAYER.velocity.length() > 6:
+	if Input.is_action_just_pressed(PLAYER.STATES.CROUCH.ACTION) && PLAYER.velocity.length() > 6:
 		transition.emit(PLAYER.STATES.SLIDE.STATE_NAME)
 	
 	if Input.is_action_just_pressed(PLAYER.STATES.JUMP.ACTION) && PLAYER.is_on_floor():

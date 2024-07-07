@@ -16,7 +16,7 @@ func update(delta: float):
 	PLAYER.update_input(SPEED, ACCELERATION, DECELERATION)
 	PLAYER.update_velocity()
 
-	if Input.is_action_just_pressed(PLAYER.STATES.CROUCH.ACTION) && PLAYER.is_on_floor():
+	if Input.is_action_pressed(PLAYER.STATES.CROUCH.ACTION) && PLAYER.is_on_floor():
 		transition.emit(PLAYER.STATES.CROUCH.STATE_NAME)
 
 	if PLAYER.velocity.length() > 0.0 && PLAYER.is_on_floor():
