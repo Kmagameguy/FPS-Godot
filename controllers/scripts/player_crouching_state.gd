@@ -34,7 +34,10 @@ func update(delta):
 func uncrouch():
 	var PLAY_FROM_END: bool = true
 
-	if !CROUCH_SHAPECAST.is_colliding():
+	# Need to check whether crouch has been pressed again, otherwise the player will uncrouch
+	# and then re-crouch after exiting from under some platform that was initially preventing
+	# uncrouch from happening.
+	if !CROUCH_SHAPECAST.is_colliding() && !Input.is_action_pressed(PLAYER.STATES.CROUCH.ACTION):
 		ANIMATION.play(PLAYER.STATES.CROUCH.ANIMATION, -1.0, -CROUCH_SPEED * 1.5, PLAY_FROM_END)
 		if ANIMATION.is_playing():
 			await ANIMATION.animation_finished
