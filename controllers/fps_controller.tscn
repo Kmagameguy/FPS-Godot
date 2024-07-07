@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c3ffql15mo0aj"]
+[gd_scene load_steps=27 format=3 uid="uid://c3ffql15mo0aj"]
 
 [ext_resource type="Script" path="res://controllers/scripts/fps_controller.gd" id="1_pgc1p"]
 [ext_resource type="Material" uid="uid://b4gwd5h7ixvct" path="res://materials/player.tres" id="2_gldw4"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://controllers/scripts/player_sliding_state.gd" id="11_clcrr"]
 [ext_resource type="Script" path="res://controllers/scripts/player_jumping_state.gd" id="12_eolni"]
 [ext_resource type="Script" path="res://controllers/scripts/player_falling_state.gd" id="13_fb6j8"]
+[ext_resource type="Script" path="res://controllers/scripts/player_double_jumping_state.gd" id="14_wn7bd"]
 
 [sub_resource type="Animation" id="Animation_pij6g"]
 resource_name = "Crouching"
@@ -592,6 +593,9 @@ script = ExtResource("11_clcrr")
 
 [node name="PlayerJumpingState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("12_eolni")
+
+[node name="PlayerDoubleJumpingState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("14_wn7bd")
 
 [node name="PlayerFallingState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("13_fb6j8")

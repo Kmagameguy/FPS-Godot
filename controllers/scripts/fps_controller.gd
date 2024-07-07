@@ -14,6 +14,7 @@ const STATES = {
 	SPRINT = { STATE_NAME = "PlayerSprintingState", ANIMATION = "Sprinting", ACTION = "sprint" },
 	SLIDE  = { STATE_NAME = "PlayerSlidingState", ANIMATION = "Sliding", ACTION = "slide" },
 	JUMP   = { STATE_NAME = "PlayerJumpingState", ANIMATION = { START = "JumpStart", END = "JumpEnd" }, ACTION = "jump" },
+	DOUBLE_JUMP = { STATE_NAME = "PlayerDoubleJumpingState", ANIMATION = { START = "JumpStart", END = "JumpEnd" }, ACTION = "jump" },
 	FALL   = { STATE_NAME = "PlayerFallingState", ANIMATION = null, ACTION = null }
 }
 

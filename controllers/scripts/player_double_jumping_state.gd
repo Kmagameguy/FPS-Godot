@@ -1,4 +1,4 @@
-class_name PlayerJumpingState extends PlayerMovementState
+class_name PlayerDoubleJumpingState extends PlayerMovementState
 
 @export var SPEED        : float = 6.0
 @export var ACCELERATION : float = 0.1
@@ -15,8 +15,8 @@ func update(delta: float) -> void:
 	PLAYER.update_input(SPEED * INPUT_REDUCER, ACCELERATION, DECELERATION)
 	PLAYER.update_velocity()
 	
-	if Input.is_action_just_pressed(PLAYER.STATES.DOUBLE_JUMP.ACTION):
-		transition.emit(PLAYER.STATES.DOUBLE_JUMP.STATE_NAME)
+	#if Input.is_action_just_pressed(PLAYER.STATES.JUMP.ACTION):
+		#PLAYER.velocity.y = JUMP_VELOCITY
 
 	if Input.is_action_just_released(PLAYER.STATES.JUMP.ACTION):
 		if PLAYER.velocity.y > 0:
