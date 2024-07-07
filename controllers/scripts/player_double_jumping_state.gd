@@ -3,7 +3,7 @@ class_name PlayerDoubleJumpingState extends PlayerMovementState
 @export var SPEED        : float = 6.0
 @export var ACCELERATION : float = 0.1
 @export var DECELERATION : float = 0.25
-@export var JUMP_VELOCITY: float = 6.5
+@export var JUMP_VELOCITY: float = 5.0
 @export_range(0.5, 1.0, 0.01) var INPUT_REDUCER: float = 0.85
 
 func enter(_previous_state: PlayerState) -> void:
