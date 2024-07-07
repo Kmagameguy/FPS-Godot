@@ -14,9 +14,6 @@ func update(delta: float) -> void:
 	PLAYER.update_gravity(delta)
 	PLAYER.update_input(SPEED * INPUT_REDUCER, ACCELERATION, DECELERATION)
 	PLAYER.update_velocity()
-	
-	#if Input.is_action_just_pressed(PLAYER.STATES.JUMP.ACTION):
-		#PLAYER.velocity.y = JUMP_VELOCITY
 
 	if Input.is_action_just_released(PLAYER.STATES.JUMP.ACTION):
 		if PLAYER.velocity.y > 0:

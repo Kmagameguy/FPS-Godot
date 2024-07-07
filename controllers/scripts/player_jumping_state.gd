@@ -14,8 +14,8 @@ func update(delta: float) -> void:
 	PLAYER.update_gravity(delta)
 	PLAYER.update_input(SPEED * INPUT_REDUCER, ACCELERATION, DECELERATION)
 	PLAYER.update_velocity()
-	
-	if Input.is_action_just_pressed(PLAYER.STATES.DOUBLE_JUMP.ACTION):
+
+	if Input.is_action_pressed(PLAYER.STATES.DOUBLE_JUMP.ACTION):
 		transition.emit(PLAYER.STATES.DOUBLE_JUMP.STATE_NAME)
 
 	if Input.is_action_just_released(PLAYER.STATES.JUMP.ACTION):
@@ -25,6 +25,6 @@ func update(delta: float) -> void:
 	if PLAYER.is_on_floor():
 		ANIMATION.play(PLAYER.STATES.JUMP.ANIMATION.END)
 		transition.emit(PLAYER.STATES.IDLE.STATE_NAME)
-	
+
 	if PLAYER.velocity.y < -3.0 && PLAYER.is_in_air():
 		transition.emit(PLAYER.STATES.FALL.STATE_NAME)

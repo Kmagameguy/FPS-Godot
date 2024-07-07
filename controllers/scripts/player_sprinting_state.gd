@@ -15,18 +15,18 @@ func update(delta: float) -> void:
 	PLAYER.update_gravity(delta)
 	PLAYER.update_input(SPEED, ACCELERATION, DECELERATION)
 	PLAYER.update_velocity()
-	
+
 	set_animation_speed(PLAYER.velocity.length())
-	
+
 	if Input.is_action_just_released(PLAYER.STATES.SPRINT.ACTION):
 		transition.emit(PLAYER.STATES.WALK.STATE_NAME)
-	
+
 	if Input.is_action_just_pressed(PLAYER.STATES.CROUCH.ACTION) && PLAYER.velocity.length() > 6:
 		transition.emit(PLAYER.STATES.SLIDE.STATE_NAME)
-	
+
 	if Input.is_action_just_pressed(PLAYER.STATES.JUMP.ACTION) && PLAYER.is_on_floor():
 		transition.emit(PLAYER.STATES.JUMP.STATE_NAME)
-	
+
 	if PLAYER.velocity.y < -3.0 && PLAYER.is_in_air():
 		transition.emit(PLAYER.STATES.FALL.STATE_NAME)
 

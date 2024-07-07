@@ -7,7 +7,7 @@ class_name PlayerIdleState extends PlayerMovementState
 func enter(_previous_state: PlayerState) -> void:
 	if ANIMATION.is_playing() && ANIMATION.current_animation == PLAYER.STATES.JUMP.ANIMATION.END:
 		await ANIMATION.animation_finished
-	
+
 	ANIMATION.pause()
 
 func update(delta: float):
@@ -22,7 +22,7 @@ func update(delta: float):
 	if PLAYER.velocity.length() > 0.0 && PLAYER.is_on_floor():
 		transition.emit(PLAYER.STATES.WALK.STATE_NAME)
 
-	if Input.is_action_just_pressed(PLAYER.STATES.JUMP.ACTION) && PLAYER.is_on_floor():
+	if Input.is_action_pressed(PLAYER.STATES.JUMP.ACTION) && PLAYER.is_on_floor():
 		transition.emit(PLAYER.STATES.JUMP.STATE_NAME)
 
 	if PLAYER.velocity.y < -3.0 && PLAYER.is_in_air():

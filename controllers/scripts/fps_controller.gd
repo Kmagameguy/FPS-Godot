@@ -1,20 +1,32 @@
 class_name Player extends CharacterBody3D
 
-@export var MOUSE_SENSITIVITY : float = 0.5
-@export var TILT_LOWER_LIMIT  : float = deg_to_rad(-90.0)
-@export var TILT_UPPER_LIMIT  : float = deg_to_rad(90.0)
-@export var CAMERA_CONTROLLER : Camera3D
-@export var ANIMATION_PLAYER  : AnimationPlayer
-@export var CROUCH_SHAPECAST  : ShapeCast3D
+@export var MOUSE_SENSITIVITY: float = 0.5
+@export var TILT_LOWER_LIMIT : float = deg_to_rad(-90.0)
+@export var TILT_UPPER_LIMIT : float = deg_to_rad(90.0)
+@export var CAMERA_CONTROLLER: Camera3D
+@export var ANIMATION_PLAYER : AnimationPlayer
+@export var CROUCH_SHAPECAST : ShapeCast3D
 
-const STATES = {
+const INPUTS: Dictionary = {
+	CROUCH        = "crouch",
+	DEBUG         = "debug",
+	EXIT          = "exit",
+	JUMP          = "jump",
+	MOVE_LEFT     = "move_left",
+	MOVE_FORWARD  = "move_forward",
+	MOVE_RIGHT    = "move_right",
+	MOVE_BACKWARD = "move_backward",
+	SPRINT        = "sprint",
+}
+
+const STATES: Dictionary = {
 	IDLE   = { STATE_NAME = "PlayerIdleState", ANIMATION = null, ACTION = null },
-	CROUCH = { STATE_NAME = "PlayerCrouchingState", ANIMATION = "Crouching", ACTION = "crouch" },
+	CROUCH = { STATE_NAME = "PlayerCrouchingState", ANIMATION = "Crouching", ACTION = INPUTS.CROUCH },
 	WALK   = { STATE_NAME = "PlayerWalkingState", ANIMATION = "Walking", ACTION = null },
-	SPRINT = { STATE_NAME = "PlayerSprintingState", ANIMATION = "Sprinting", ACTION = "sprint" },
-	SLIDE  = { STATE_NAME = "PlayerSlidingState", ANIMATION = "Sliding", ACTION = "slide" },
-	JUMP   = { STATE_NAME = "PlayerJumpingState", ANIMATION = { START = "JumpStart", END = "JumpEnd" }, ACTION = "jump" },
-	DOUBLE_JUMP = { STATE_NAME = "PlayerDoubleJumpingState", ANIMATION = { START = "JumpStart", END = "JumpEnd" }, ACTION = "jump" },
+	SPRINT = { STATE_NAME = "PlayerSprintingState", ANIMATION = "Sprinting", ACTION = INPUTS.SPRINT },
+	SLIDE  = { STATE_NAME = "PlayerSlidingState", ANIMATION = "Sliding", ACTION = INPUTS.CROUCH },
+	JUMP   = { STATE_NAME = "PlayerJumpingState", ANIMATION = { START = "JumpStart", END = "JumpEnd" }, ACTION = INPUTS.JUMP },
+	DOUBLE_JUMP = { STATE_NAME = "PlayerDoubleJumpingState", ANIMATION = { START = "JumpStart", END = "JumpEnd" }, ACTION = INPUTS.JUMP },
 	FALL   = { STATE_NAME = "PlayerFallingState", ANIMATION = null, ACTION = null }
 }
 
@@ -35,7 +47,6 @@ var _current_rotation    : float
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _unhandled_input(event: InputEvent) -> void:
-
 	_mouse_input = event is InputEventMouseMotion && Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 	if _mouse_input:
 		_rotation_input = -event.relative.x * MOUSE_SENSITIVITY
