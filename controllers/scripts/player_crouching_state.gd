@@ -28,6 +28,9 @@ func update(delta):
 	if !Input.is_action_pressed(PLAYER.STATES.CROUCH.ACTION):
 		uncrouch()
 
+	if PLAYER.velocity.y < -3.0 && PLAYER.is_in_air():
+		transition.emit(PLAYER.STATES.FALL.STATE_NAME)
+
 func uncrouch():
 	var PLAY_FROM_END: bool = true
 
