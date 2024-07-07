@@ -38,5 +38,5 @@ func _on_child_transition(new_state_name: StringName) -> void:
 			CURRENT_STATE.exit()
 			new_state.enter(CURRENT_STATE)
 			CURRENT_STATE = new_state
-		else:
-			push_warning("State does not exist: " + new_state_name)
+	else:
+		push_warning("State does not exist: " + new_state_name)
