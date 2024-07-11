@@ -6,6 +6,7 @@ class_name Player extends CharacterBody3D
 @export var CAMERA_CONTROLLER: Camera3D
 @export var ANIMATION_PLAYER : AnimationPlayer
 @export var CROUCH_SHAPECAST : ShapeCast3D
+@onready var FIRING_PARTICLES = $Interface/CanvasLayer/CenterContainer/CPUParticles2D
 
 const INPUTS: Dictionary = {
 	CROUCH        = "crouch",
@@ -81,6 +82,10 @@ func _ready() -> void:
 	# function of the shapecast.  Where '$"."' is a reference to the root
 	# CharacterBody3D node.
 	CROUCH_SHAPECAST.add_exception($".")
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("fire"):
+		FIRING_PARTICLES.emitting = true
 
 func _physics_process(delta: float) -> void:
 	Global.debug.add_property("Velocity", "%.2f" % velocity.length(), 2)
