@@ -6,6 +6,8 @@ class_name PlayerWalkingState extends PlayerMovementState
 @export var MAX_ANIM_SPEED : float = 2.2
 
 func enter(_previous_state: PlayerState) -> void:
+	# Need to fix this transition.  If walk buttons are held while the "Jump End" animation is being
+	# played then the animation is delayed until all movement buttons are released.
 	if ANIMATION.is_playing() && ANIMATION.current_animation == PLAYER.STATES.JUMP.ANIMATION.END:
 		await ANIMATION.animation_finished
 
